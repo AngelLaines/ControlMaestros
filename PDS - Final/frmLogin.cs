@@ -47,20 +47,20 @@ namespace PDS___Final
         {
             string nombreMaestro = "";
 
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select nombres from maestros where id_maestro="+id;
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
                 datos.Read();
                 nombreMaestro = datos["nombres"].ToString();
@@ -81,20 +81,20 @@ namespace PDS___Final
         {
             string id = "";
 
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select id_maestro from usuarios where nombre_usuario='" + txtUser.Text + "' and contrasena='" + txtPassword.Text + "'";
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 

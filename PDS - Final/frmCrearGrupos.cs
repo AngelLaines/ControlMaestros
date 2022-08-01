@@ -35,17 +35,17 @@ namespace PDS___Final
         {
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select max(numero) as numero from grupos";
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 datos.Read();
@@ -72,20 +72,20 @@ namespace PDS___Final
         }
         private void carreras()
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select id_carrera, nombre from carreras";
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -108,20 +108,20 @@ namespace PDS___Final
 
         private void materias()
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select id_materia, nombre from materias";
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -193,9 +193,9 @@ namespace PDS___Final
             string id_carrera = carrer[cmbCarrera.Text.ToString()].ToString();
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"insert into grupos (numero,tamano,id_materia,id_carrera) values(" + idGrupo.ToString() + "," + tamaño + "," + id_materia + "," + id_carrera + ")";
-            // Create command 
+              
             try
             {
                 conn.Open();
@@ -224,9 +224,9 @@ namespace PDS___Final
 
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"insert into maestros_grupos (id_maestro,numero_grupo,examenes,tareas,practicas,asistencia) values ("+id+","+idGrupo+","+examen+","+tareas+","+practicas+","+asistencia+")";
-            // Create command 
+              
             try
             {
                 conn.Open();

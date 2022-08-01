@@ -26,13 +26,13 @@ namespace PDS___Final
         {
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select m.id_materia as clave, m.nombre as nombre, g.numero as grupo from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id;
             
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
                  

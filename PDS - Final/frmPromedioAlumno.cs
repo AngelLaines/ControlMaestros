@@ -30,20 +30,20 @@ namespace PDS___Final
 
         private void frmPromedioAlumno_Load(object sender, EventArgs e)
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select g.numero as grupo from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id;
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -78,21 +78,21 @@ namespace PDS___Final
         }
         private void alumnos()
         {
-            // Create connection
+             
             dict.Clear();
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select alumnos.expediente, alumnos.nombres, alumnos.apellido_paterno, alumnos.apellido_materno, alumnos_grupos.numero_grupo from alumnos join alumnos_grupos on alumnos.expediente = alumnos_grupos.expediente_alumno where alumnos_grupos.numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 string nombreAlumno = "";
@@ -118,20 +118,20 @@ namespace PDS___Final
             cmbAlumno.Items.Clear();
             cmbAlumno.ResetText();
 
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select m.nombre as materia from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id + " and g.numero=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -157,17 +157,17 @@ namespace PDS___Final
             lblAsistencia.Text = "Asistencia: ";
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select mg.examenes as examenes, mg.tareas as tareas, mg.practicas as practicas, mg.asistencia as asistencia from maestros_grupos mg join maestros ma on ma.id_maestro=mg.id_maestro join grupos gr on gr.numero=mg.numero_grupo where mg.numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -204,9 +204,9 @@ namespace PDS___Final
             lblAsistenciaA.Text = "Asistencia: ";
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select sum(calificacion) as sum, count(calificacion) as con from alumnos_examenes where expediente_alumno="+dict[cmbAlumno.SelectedItem.ToString()].ToString()+" and numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             double promedio;
@@ -214,10 +214,10 @@ namespace PDS___Final
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
                 datos.Read();
                 n = double.Parse(datos["con"].ToString());

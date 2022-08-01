@@ -24,20 +24,20 @@ namespace PDS___Final
 
         private void frmTareas_Load(object sender, EventArgs e)
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select g.numero as grupo from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id;
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -63,15 +63,15 @@ namespace PDS___Final
         }
         private void actualizarGrid()
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select * from tareas where numero_grupo=" + cmbGrupo.SelectedItem.ToString();
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
                 dataAdapter.SelectCommand = new MySqlCommand(sql, conn);
@@ -108,10 +108,10 @@ namespace PDS___Final
             string nombreTarea = txtTarea.Text;
             string estado = cmbEstado.SelectedItem.ToString();
 
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"insert into tareas (nombre, estado, numero_grupo) values('" + nombreTarea+"','"+estado+"',"+grupo+")";
 
             try

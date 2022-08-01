@@ -25,20 +25,20 @@ namespace PDS___Final
 
         private void frmCalificarPractica_Load(object sender, EventArgs e)
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select g.numero as grupo from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id;
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -69,20 +69,20 @@ namespace PDS___Final
             dict.Clear();
 
             txtClave.Clear();
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select m.nombre as materia from maestros_grupos mg join grupos g on g.numero=mg.numero_grupo join materias m on m.id_materia=g.id_materia where mg.id_maestro=" + id + " and g.numero=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
 
@@ -108,21 +108,21 @@ namespace PDS___Final
         }
         private void alumnos()
         {
-            // Create connection
+             
             dict.Clear();
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select alumnos.expediente, alumnos.nombres, alumnos.apellido_paterno, alumnos.apellido_materno, alumnos_grupos.numero_grupo from alumnos join alumnos_grupos on alumnos.expediente = alumnos_grupos.expediente_alumno where alumnos_grupos.numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 string nombreAlumno = "";
@@ -157,20 +157,20 @@ namespace PDS___Final
         }
         private void practica()
         {
-            // Create connection 
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select nombre from practicas where estado='activa' and numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 while (datos.Read())
@@ -190,19 +190,19 @@ namespace PDS___Final
         }
         private void calif()
         {
-            // Create connection
+             
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"select calificacion from alumnos_practicas where numero_grupo=" + cmbGrupo.SelectedItem.ToString() + " and expediente_alumno=" + dict[cmbAlumno.SelectedItem.ToString()].ToString();
-            // Create command 
+              
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             try
             {
-                // Open connection 
+                  
                 conn.Open();
 
-                // Execute Scalar query with ExecuteScalar method 
+                  
                 MySqlDataReader datos = cmd.ExecuteReader();
 
                 int n = 0;
@@ -231,20 +231,20 @@ namespace PDS___Final
             if (cmbPractica.Items.Count > 0)
             {
                 string nombre = cmbPractica.SelectedItem.ToString();
-                // Create connection 
+                 
                 MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-                // Create Scalar query 
+                  
                 string sql = @"select id_practica from practicas where nombre='" + nombre + "' and estado='activa' and numero_grupo=" + cmbGrupo.SelectedItem.ToString();
-                // Create command 
+                  
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
                 try
                 {
-                    // Open connection 
+                      
                     conn.Open();
 
-                    // Execute Scalar query with ExecuteScalar method 
+                      
                     MySqlDataReader datos = cmd.ExecuteReader();
 
                     datos.Read();
@@ -268,9 +268,9 @@ namespace PDS___Final
         {
             MySqlConnection conn = new MySqlConnection(@"server=localhost;user id=root;database=proyecto_final_pds");
 
-            // Create Scalar query 
+              
             string sql = @"insert into alumnos_practicas values(" + dict[cmbAlumno.SelectedItem.ToString()].ToString() + "," + txtClave.Text + "," + float.Parse(txtCalif.Text) + "," + cmbGrupo.Text + ")";
-            // Create command 
+              
             try
             {
                 conn.Open();
